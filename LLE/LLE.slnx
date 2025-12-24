@@ -1,0 +1,10 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/API/">
+    <Project Path="LLE.Native/LLE.Native.vcxproj" Id="f629d307-3210-46e4-a83b-9af89117d9b1" />
+  </Folder>
+  <Folder Name="/Console/" />
+</Solution>
