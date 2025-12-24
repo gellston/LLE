@@ -1,0 +1,10 @@
+﻿################################################################################
+# 이 .gitignore 파일은 Microsoft(R) Visual Studio에서 자동으로 만들어졌습니다.
+################################################################################
+
+/LLE/.vs/LLE.slnx
+/LLE/LLE.Native/x64/Debug
+/LLE/packages/Microsoft.ML.OnnxRuntime.Gpu.Windows.1.20.1
+/LLE/vcpkg_installed
+/LLE/x64/Debug
+/python/results/output_images
