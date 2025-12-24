@@ -139,10 +139,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="lle.cpp" />
     <ClCompile Include="LLE.Native.cpp" />
+    <ClCompile Include="memoryBlock.cpp" />
+    <ClCompile Include="memoryToken.cpp" />
+    <ClCompile Include="memoryPool.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="macro.h" />
+    <ClInclude Include="memoryBlock.h" />
+    <ClInclude Include="memoryToken.h" />
+    <ClInclude Include="image.h" />
+    <ClInclude Include="lle.h" />
+    <ClInclude Include="lle_api.h" />
+    <ClInclude Include="memoryPool.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

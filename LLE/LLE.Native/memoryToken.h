@@ -1,0 +1,79 @@
+#pragma once
+
+#ifndef LLE_MEMORY_TOKEN
+#define LLE_MEMORY_TOKEN
+
+#include <memory>
+#include <functional>
+
+#include "lle_api.h"
+
+namespace lleapi {
+	namespace v1 {
+
+		class impl_memoryToken;
+		class memoryToken;
+		using memoryToken_ptr = std::shared_ptr<memoryToken>;
+		class memoryToken {
+		private:
+
+#pragma region Friend Class
+			friend class memoryPool;
+#pragma endregion
+
+#pragma region Private Property
+			std::unique_ptr<impl_memoryToken> impl;
+#pragma endregion
+
+#pragma region Constructor
+			/// <summary>
+			/// 생성자
+			/// </summary>
+			/// <returns></returns>
+			LLE_NATIVE_API memoryToken(const std::size_t & actual_size, const std::size_t & size, uint8_t* buffer);
+
+			LLE_NATIVE_API memoryToken(const std::size_t & actual_size, const std::size_t & size, uint8_t* buffer, const std::function<void()> & dealloc_callback);
+#pragma endregion
+
+		public:
+
+
+#pragma region Destructor
+			/// <summary>
+			/// 파괴자
+			/// </summary>
+			/// <returns></returns>
+			LLE_NATIVE_API ~memoryToken();
+#pragma endregion
+
+#pragma region Public Functions
+			/// <summary>
+			/// memory block 실제 사이즈
+			/// </summary>
+			/// <returns></returns>
+			LLE_NATIVE_API std::size_t actualSize();
+
+			/// <summary>
+			/// memory block에 요청된 사이즈 사이즈
+			/// </summary>
+			/// <returns></returns>
+			LLE_NATIVE_API std::size_t size();
+
+			/// <summary>
+			/// memory block 시작주소 
+			/// </summary>
+			/// <returns></returns>
+			LLE_NATIVE_API uint8_t* data();
+
+
+
+#pragma endregion
+
+
+
+		};
+	}
+}
+
+
+#endif
