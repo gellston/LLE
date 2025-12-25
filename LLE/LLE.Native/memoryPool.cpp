@@ -7,6 +7,7 @@
 #include <set>
 #include <mutex>
 #include <algorithm>
+#include <stdexcept>
 
 #pragma region IMPL
 namespace lleapi {
@@ -33,15 +34,15 @@ namespace lleapi {
 lleapi::v1::memoryPool::memoryPool(std::initializer_list<std::size_t> bins , std::size_t unit_size, double efficient_rate) : impl(new impl_memoryPool()) {
 
 	if (unit_size == 0) {
-		throw std::exception("Invalid unit size");
+		throw std::runtime_error("Invalid unit size");
 	}
 
 	if (bins.size() == 0) {
-		throw std::exception("Invalid bin size");
+		throw std::runtime_error("Invalid bin size");
 	}
 
 	if (efficient_rate < 0.5 || efficient_rate > 1.0) {
-		throw std::exception("Invalid efficient rate");
+		throw std::runtime_error("Invalid efficient rate");
 	}
 
 	this->impl->unit_size = unit_size;
@@ -151,7 +152,7 @@ void lleapi::v1::memoryPool::reset() {
 
 		for (auto& keypair : this->impl->active) {
 			if (!keypair.second.empty()) {
-				throw std::exception("Need to return memory token");
+				throw std::runtime_error("Need to return memory token");
 			}
 		}
 

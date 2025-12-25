@@ -1,6 +1,8 @@
 #include "lle/memoryBlock.h"
 
 
+#include <stdexcept>
+
 #pragma region IMPL
 namespace lleapi {
 	namespace v1 {
@@ -23,7 +25,7 @@ lleapi::v1::memoryBlock::memoryBlock(const std::size_t& size) : impl(new impl_me
 	try {
 
 		if (size <= 0) {
-			throw std::exception("Invalid block size");
+			throw std::runtime_error("Invalid block size");
 		}
 
 		this->impl->buffer.resize(size);
@@ -48,7 +50,7 @@ lleapi::v1::memoryBlock::~memoryBlock() {
 uint8_t * lleapi::v1::memoryBlock::data() {
 
 	if (this->impl->buffer.size() == 0) {
-		throw std::exception("Invalid buffer size");
+		throw std::runtime_error("Invalid buffer size");
 	}
 
 

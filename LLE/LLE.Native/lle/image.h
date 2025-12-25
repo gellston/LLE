@@ -4,11 +4,18 @@
 #define LLE_IMAGE
 
 #include <memory>
+#include <string>
 
 #include "lle_api.h"
 
 namespace lleapi {
 	namespace v1 {
+
+		enum class colorType {
+			gray,
+			color
+		};
+
 		class memoryPool;
 		using memoryPool_ptr = std::shared_ptr<memoryPool>;
 		class impl_image;
@@ -28,6 +35,11 @@ namespace lleapi {
 			LLE_NATIVE_API image(const uint32_t & width, const uint32_t& height, const uint32_t& channel);
 			LLE_NATIVE_API image(const uint32_t& width, const uint32_t& height, const uint32_t& channel, memoryPool_ptr pool);
 #pragma endregion
+
+#pragma region Private Functions
+			std::weak_ptr<memoryPool> pool();
+#pragma endregion
+
 
 		public:
 
@@ -77,11 +89,16 @@ namespace lleapi {
 			LLE_NATIVE_API uint32_t stride();
 
 	
+			
 #pragma endregion
 
 #pragma region Static Functions
 			LLE_NATIVE_API static image_ptr create(const uint32_t& width, const uint32_t& height, const uint32_t& channel);
 			LLE_NATIVE_API static image_ptr create(const uint32_t& width, const uint32_t& height, const uint32_t& channel, memoryPool_ptr pool);
+			LLE_NATIVE_API static image_ptr resize(image_ptr & image, const uint32_t& width, const uint32_t& height);
+			LLE_NATIVE_API static image_ptr imread(const std::string& path, colorType colorType);
+			LLE_NATIVE_API static image_ptr imread(const std::string& path, colorType colorType, memoryPool_ptr pool);
+			LLE_NATIVE_API static void imwrite(const std::string& path, image_ptr image);
 #pragma endregion
 
 
