@@ -1,4 +1,4 @@
-#include "memoryBlock.h"
+#include "lle/memoryBlock.h"
 
 
 #pragma region IMPL
@@ -47,7 +47,7 @@ lleapi::v1::memoryBlock::~memoryBlock() {
 #pragma region Public Functions
 uint8_t * lleapi::v1::memoryBlock::data() {
 
-	if (this->impl->buffer.size() <= 0) {
+	if (this->impl->buffer.size() == 0) {
 		throw std::exception("Invalid buffer size");
 	}
 

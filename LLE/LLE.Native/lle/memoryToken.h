@@ -19,6 +19,7 @@ namespace lleapi {
 
 #pragma region Friend Class
 			friend class memoryPool;
+			friend class image;
 #pragma endregion
 
 #pragma region Private Property

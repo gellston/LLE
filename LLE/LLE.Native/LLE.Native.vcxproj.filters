@@ -30,24 +30,27 @@
     <ClCompile Include="memoryBlock.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="image.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="lle_api.h">
+    <ClInclude Include="lle\lle_api.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="lle.h">
+    <ClInclude Include="lle\lle.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="image.h">
+    <ClInclude Include="lle\image.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="memoryPool.h">
+    <ClInclude Include="lle\memoryPool.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="memoryToken.h">
+    <ClInclude Include="lle\memoryToken.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
-    <ClInclude Include="memoryBlock.h">
+    <ClInclude Include="lle\memoryBlock.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

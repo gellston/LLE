@@ -9,21 +9,27 @@
 
 namespace lleapi {
 	namespace v1 {
+		class memoryPool;
+		using memoryPool_ptr = std::shared_ptr<memoryPool>;
 		class impl_image;
 		class image;
 		using image_ptr = std::shared_ptr<image>;
 		class image {
 		private:
-			std::unique_ptr<impl_image> instance;
-		public:
+#pragma region Private Property
+			std::unique_ptr<impl_image> impl;
+#pragma endregion
 
 #pragma region Constructor
 			/// <summary>
 			/// 생성자
 			/// </summary>
 			/// <returns></returns>
-			LLE_NATIVE_API image();
+			LLE_NATIVE_API image(const uint32_t & width, const uint32_t& height, const uint32_t& channel);
+			LLE_NATIVE_API image(const uint32_t& width, const uint32_t& height, const uint32_t& channel, memoryPool_ptr pool);
 #pragma endregion
+
+		public:
 
 #pragma region Destructor
 			/// <summary>
@@ -38,19 +44,19 @@ namespace lleapi {
 			/// 이미지 너비
 			/// </summary>
 			/// <returns></returns>
-			LLE_NATIVE_API unsigned int width();
+			LLE_NATIVE_API uint32_t width();
 
 			/// <summary>
 			/// 이미지 높이
 			/// </summary>
 			/// <returns></returns>
-			LLE_NATIVE_API unsigned int height();
+			LLE_NATIVE_API uint32_t height();
 
 			/// <summary>
 			/// 이미지 채널
 			/// </summary>
 			/// <returns></returns>
-			LLE_NATIVE_API unsigned int channel();
+			LLE_NATIVE_API uint32_t channel();
 
 			/// <summary>
 			/// 이미지 포인터의 시작주소 
@@ -68,16 +74,15 @@ namespace lleapi {
 			/// stride 크기 
 			/// </summary>
 			/// <returns></returns>
-			LLE_NATIVE_API unsigned int stride();
+			LLE_NATIVE_API uint32_t stride();
 
-			/// <summary>
-			/// 이미지 객체가 valid한지 체크하는 함수 
-			/// </summary>
-			/// <returns></returns>
-			LLE_NATIVE_API bool valid();
 	
 #pragma endregion
 
+#pragma region Static Functions
+			LLE_NATIVE_API static image_ptr create(const uint32_t& width, const uint32_t& height, const uint32_t& channel);
+			LLE_NATIVE_API static image_ptr create(const uint32_t& width, const uint32_t& height, const uint32_t& channel, memoryPool_ptr pool);
+#pragma endregion
 
 
 		};

@@ -20,7 +20,7 @@ namespace lleapi {
 		private:
 
 #pragma region Private Property
-			std::unique_ptr<impl_memoryPool> impl;
+			std::shared_ptr<impl_memoryPool> impl;
 #pragma endregion
 
 #pragma region Constructor
@@ -46,7 +46,7 @@ namespace lleapi {
 			/// </summary>
 			/// <param name="aligned_size"></param>
 			/// <returns></returns>
-			memoryToken_ptr findToken(std::size_t size);
+			memoryToken_ptr findToken(std::size_t requested_size, std::size_t aligned_size);
 #pragma endregion
 
 

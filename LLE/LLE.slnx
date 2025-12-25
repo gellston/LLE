@@ -6,5 +6,9 @@
   <Folder Name="/API/">
     <Project Path="LLE.Native/LLE.Native.vcxproj" Id="f629d307-3210-46e4-a83b-9af89117d9b1" />
   </Folder>
-  <Folder Name="/Console/" />
+  <Folder Name="/Console/">
+    <Project Path="NativeTest/NativeTest.vcxproj" Id="ad73e871-c1c4-4c87-a459-e3c664d4d4ad">
+      <BuildDependency Project="LLE.Native/LLE.Native.vcxproj" />
+    </Project>
+  </Folder>
 </Solution>

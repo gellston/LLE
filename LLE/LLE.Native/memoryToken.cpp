@@ -1,5 +1,5 @@
 
-#include "memoryToken.h"
+#include "lle/memoryToken.h"
 
 
 #include <vector>
@@ -24,7 +24,7 @@ namespace lleapi {
 
 #pragma region Constructor
 lleapi::v1::memoryToken::memoryToken(const std::size_t& actual_size, const std::size_t& size, uint8_t* buffer) : impl(new impl_memoryToken()) {
-	if (size <= 0) {
+	if (size == 0) {
 		throw std::exception("Invalid block size");
 	}
 
@@ -37,7 +37,7 @@ lleapi::v1::memoryToken::memoryToken(const std::size_t& actual_size, const std::
 }
 
 lleapi::v1::memoryToken::memoryToken(const std::size_t& actual_size, const std::size_t& size, uint8_t* buffer, const std::function<void()>& dealloc_callback) : impl(new impl_memoryToken()) {
-	if (size <= 0) {
+	if (size == 0) {
 		throw std::exception("Invalid block size");
 	}
 
@@ -68,7 +68,7 @@ lleapi::v1::memoryToken::~memoryToken() {
 
 uint8_t * lleapi::v1::memoryToken::data() {
 	try {
-		if (this->impl->size <= 0) {
+		if (this->impl->size == 0) {
 			throw std::exception("Invalid block size");
 		}
 
