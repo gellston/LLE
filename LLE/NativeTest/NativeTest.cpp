@@ -21,6 +21,8 @@ int main()
         auto output2 = lle->predict("C://github//dataset//lol_dataset//our485//low//low_15.png");
         lleapi::v1::image::imwrite("C://github//LLE//LLE//x64//Debug//result2.jpg", output1);
 
+        lle->shutdown();
+
     }
     catch (std::exception ex) {
 
