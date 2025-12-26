@@ -1,5 +1,6 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/gellston/LLE/refs/heads/main/icon.png" alt="LLE Icon" width="140" />
+
+<img src="https://raw.githubusercontent.com/gellston/LLE/main/icon.png" alt="LLE Icon" width="140" />
 
   # LLE (Low Light Enhancement)
 
