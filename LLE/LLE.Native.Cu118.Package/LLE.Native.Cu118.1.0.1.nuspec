@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>LLE.Native.Cu118</id>
     <version>1.0.1</version>
@@ -7,9 +7,12 @@
     <authors>gellston</authors>
     <owners></owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/gellston/LLE/blob/main/LICENSE.txt</licenseUrl>
     <icon>icon.png</icon>
+    <readme>readme.md</readme>
     <projectUrl>https://github.com/gellston/LLE</projectUrl>
-    <description>My package description.</description>
+    <description>Low Light Enhancement Deeplearning Model Inference API</description>
+    <copyright>Copyright (c) 2025–present gellston</copyright>
     <tags>c++,c++/cli,ai,deeplearning,onnx</tags>
   </metadata>
   <files>
@@ -41,5 +44,6 @@
     <file src="build\native\LLE.Native.Cu118.props" target="build\native\LLE.Native.Cu118.props" />
     <file src="build\native\LLE.Native.Cu118.targets" target="build\native\LLE.Native.Cu118.targets" />
     <file src="icon.png" target="icon.png" />
+    <file src="readme.md" target="readme.md" />
   </files>
 </package>
