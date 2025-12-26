@@ -381,7 +381,7 @@ lleapi::v1::lle_ptr lleapi::v1::lle::create(memoryPool_ptr pool) {
 
 lleapi::v1::lle_ptr lleapi::v1::lle::create() {
     try {
-        return std::shared_ptr<lleapi::v1::lle>();
+        return std::shared_ptr<lleapi::v1::lle>(new lle());
     }
     catch (...) {
         throw;
