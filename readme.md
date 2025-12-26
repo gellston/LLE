@@ -23,6 +23,18 @@
 - Author / Maintainer: **gellston**
 - Examples:
   * [`CppInference`](https://github.com/gellston/LLE/tree/main/LLE/CppInference)
+  
+## Sample Result (Before / After)
+
+A quick visual comparison using the bundled sample images.
+
+| Low-light input | Enhanced output |
+| --- | --- |
+| ![low_61](https://github.com/gellston/LLE/blob/main/samples/low_61.png?raw=true) | ![enhanced_low_61](https://github.com/gellston/LLE/blob/main/samples/enhanced_low_61.png?raw=true) |
+
+> If images don’t render on NuGet.org, switch these URLs to raw links:
+> - https://raw.githubusercontent.com/gellston/LLE/main/samples/low_61.png
+> - https://raw.githubusercontent.com/gellston/LLE/main/samples/enhanced_low_61.png
 
 ### Model Support (Now / Next)
 - **Current**: Low-light enhancement inference (native runtime)
@@ -207,6 +219,7 @@ We sincerely thank the authors and contributors of these works for advancing low
 > Note: Please also comply with the licenses/terms of any upstream code, weights, and third-party libraries you use or redistribute.
 
 ---
+
 
 ## License
 
