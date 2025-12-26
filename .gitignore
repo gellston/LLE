@@ -18,3 +18,10 @@
 *.nupkg
 /LLE/LLE.Native.Cu118.Package/build/native/bin
 /LLE/NativeTest/x64/Release
+/LLE/CppInference/x64
+/LLE/packages/LLE.Native.Cu118.1.0.1/build/native/bin/x64
+/LLE/packages/LLE.Native.Cu118.1.0.1/build/native/include/lle
+/LLE/packages/LLE.Native.Cu118.1.0.1/build/native/lib/x64
+/LLE/packages/LLE.Native.Cu118.1.0.1/build/native/lib/x64/LLE.Native.Cu118.lib
+/LLE/packages/LLE.Native.Cu118.1.0.1/.signature.p7s
+/LLE/packages/LLE.Native.Cu118.1.0.1/build/native/LLE.Native.Cu118.props
