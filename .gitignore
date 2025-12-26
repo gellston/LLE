@@ -4,12 +4,10 @@
 
 /LLE/.vs/LLE.slnx
 /LLE/LLE.Native/x64/Debug
-/LLE/packages/Microsoft.ML.OnnxRuntime.Gpu.Windows.1.20.1
 /LLE/vcpkg_installed
 /LLE/x64/Debug
 /python/results/output_images
 /LLE/NativeTest/x64/Debug
-/LLE/packages/Microsoft.ML.OnnxRuntime.Gpu.Windows.1.17.3
 /LLE/LLE.Native.Cu118/x64
 /LLE/LLE.Native.Cu118.Package/build/native/bin/x64
 /LLE/LLE.Native.Cu118.Package/build/native/include/lle
@@ -19,9 +17,4 @@
 /LLE/LLE.Native.Cu118.Package/build/native/bin
 /LLE/NativeTest/x64/Release
 /LLE/CppInference/x64
-/LLE/packages/LLE.Native.Cu118.1.0.1/build/native/bin/x64
-/LLE/packages/LLE.Native.Cu118.1.0.1/build/native/include/lle
-/LLE/packages/LLE.Native.Cu118.1.0.1/build/native/lib/x64
-/LLE/packages/LLE.Native.Cu118.1.0.1/build/native/lib/x64/LLE.Native.Cu118.lib
-/LLE/packages/LLE.Native.Cu118.1.0.1/.signature.p7s
-/LLE/packages/LLE.Native.Cu118.1.0.1/build/native/LLE.Native.Cu118.props
+/LLE/packages
