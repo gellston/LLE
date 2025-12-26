@@ -12,6 +12,10 @@
 namespace lleapi {
 	namespace v1 {
 
+		enum dlType {
+			zeroDCE
+		};
+
 		enum device{
 			cpu,
 			cuda
@@ -31,7 +35,7 @@ namespace lleapi {
 
 #pragma region Constructor
 			/// <summary>
-			/// 생성자
+			/// Constructor
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API lle(memoryPool_ptr pool);
@@ -44,7 +48,7 @@ namespace lleapi {
 
 #pragma region Destructor
 			/// <summary>
-			/// 파괴자
+			/// Destructor
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API ~lle();
@@ -52,14 +56,16 @@ namespace lleapi {
 
 #pragma region Public Functions
 			/// <summary>
-			/// 내부 변수들과 인스턴스들을 초기화 및 셋팅
+			/// Setup internal modoel and instances
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API void setup(const std::string & path, device _device);
 
 
+			LLE_NATIVE_API void setup(dlType delType, device _device);
+
 			/// <summary>
-			/// 내부 인스턴스를 정리
+			/// Cleaup internal model and instances
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API void shutdown();
@@ -67,7 +73,7 @@ namespace lleapi {
 
 
 			/// <summary>
-			/// 이미지 파일을 불러와 예측한 결과를 리턴
+			/// Load image file from path and predict
 			/// </summary>
 			/// <param name="path"></param>
 			/// <returns></returns>
@@ -76,7 +82,7 @@ namespace lleapi {
 
 
 			/// <summary>
-			/// 입력 이미지를 넣어서 예측
+			/// Predict from image
 			/// </summary>
 			/// <param name="path"></param>
 			/// <returns></returns>
@@ -86,11 +92,17 @@ namespace lleapi {
 
 #pragma region Static Functions
 			/// <summary>
-			/// LLE 객체 생성
+			/// Create LLE class
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API static lle_ptr create();
 
+
+			/// <summary>
+			/// Create LLE class with memory pool
+			/// </summary>
+			/// <param name="pool"></param>
+			/// <returns></returns>
 			LLE_NATIVE_API static lle_ptr create(memoryPool_ptr pool);
 #pragma endregion
 

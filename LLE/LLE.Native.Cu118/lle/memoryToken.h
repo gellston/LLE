@@ -28,7 +28,7 @@ namespace lleapi {
 
 #pragma region Constructor
 			/// <summary>
-			/// 생성자
+			/// Constructor
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API memoryToken(const std::size_t & actual_size, const std::size_t & size, uint8_t* buffer);
@@ -41,7 +41,7 @@ namespace lleapi {
 
 #pragma region Destructor
 			/// <summary>
-			/// 파괴자
+			/// Destructor
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API ~memoryToken();
@@ -49,19 +49,19 @@ namespace lleapi {
 
 #pragma region Public Functions
 			/// <summary>
-			/// memory block 실제 사이즈
+			/// memory block actual size
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API std::size_t actualSize();
 
 			/// <summary>
-			/// memory block에 요청된 사이즈 사이즈
+			/// memory block에 requested size
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API std::size_t size();
 
 			/// <summary>
-			/// memory block 시작주소 
+			/// memory block start address
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API uint8_t* data();

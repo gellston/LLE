@@ -2,6 +2,9 @@
 #include "lle/lle.h"
 #include "lle/memoryPool.h"
 
+//Models
+#include "models/zerodce.h"
+
 #include <opencv2/opencv.hpp>
 #include <onnxruntime_cxx_api.h>
 #include <opencv2/opencv.hpp>
@@ -23,6 +26,8 @@ namespace lleapi {
             int32_t model_h = 0;
 
             impl_lle() {}
+
+            std::mutex mtx_run;
         };
     }
 }
@@ -43,13 +48,21 @@ lleapi::v1::lle::lle(lleapi::v1::memoryPool_ptr pool) : impl(new impl_lle()) {
 
 #pragma region Destructor
 lleapi::v1::lle::~lle() {
+    try {
+        this->shutdown();
+    }
+    catch (...) {
 
+    }
 }
 #pragma endregion
 
 
 #pragma region Public Functions
 void lleapi::v1::lle::setup(const std::string & path, lleapi::v1::device _device) {
+
+    std::scoped_lock lock(this->impl->mtx_run);
+
     if (impl->initialized) {
         throw std::runtime_error("lle::setup() called twice. Call shutdown() first.");
     }
@@ -113,7 +126,82 @@ void lleapi::v1::lle::setup(const std::string & path, lleapi::v1::device _device
     }
 }
 
+void lleapi::v1::lle::setup(lleapi::v1::dlType delType, lleapi::v1::device _device) {
+
+    std::scoped_lock lock(this->impl->mtx_run);
+
+    if (impl->initialized) {
+        throw std::runtime_error("lle::setup() called twice. Call shutdown() first.");
+    }
+
+    try {
+        if (!impl->env) {
+            impl->env = std::make_unique<Ort::Env>(ORT_LOGGING_LEVEL_WARNING, "LLE");
+        }
+
+        impl->so = Ort::SessionOptions{};
+        impl->so.SetGraphOptimizationLevel(GraphOptimizationLevel::ORT_ENABLE_EXTENDED);
+        impl->so.SetIntraOpNumThreads(1);
+        impl->so.SetInterOpNumThreads(1);
+
+
+        switch (_device) {
+        case device::cpu:
+
+            break;
+
+        case device::cuda: {
+            OrtCUDAProviderOptions options{};
+            options.device_id = 0;
+            options.cudnn_conv_algo_search = OrtCudnnConvAlgoSearchExhaustive;
+            options.arena_extend_strategy = 0;
+            impl->so.AppendExecutionProvider_CUDA(options);
+
+
+            break;
+        }
+
+        default:
+            throw std::runtime_error("Unsupported device");
+        }
+
+
+        switch (delType) {
+        case lleapi::v1::dlType::zeroDCE:
+            impl->session = std::make_unique<Ort::Session>(*impl->env, zerodce, sizeof(zerodce), impl->so);
+            break;
+        }
+        
+
+
+        {
+            auto in_info = impl->session->GetInputTypeInfo(0).GetTensorTypeAndShapeInfo();
+            auto shape = in_info.GetShape();
+            if (shape.size() != 4) {
+                throw std::runtime_error("Model input rank is not 4 (expected BCHW).");
+            }
+
+            const int64_t h = shape[2];
+            const int64_t w = shape[3];
+
+            if (h <= 0 || w <= 0) {
+                throw std::runtime_error("Model input H/W is dynamic (<=0). Fixed input size model required.");
+            }
+
+            impl->model_h = static_cast<int32_t>(h);
+            impl->model_w = static_cast<int32_t>(w);
+        }
+
+        impl->initialized = true;
+    }
+    catch (const Ort::Exception& e) {
+        throw std::runtime_error(std::string("ONNX Runtime error: ") + e.what());
+    }
+}
+
 void lleapi::v1::lle::shutdown() {
+
+    std::scoped_lock lock(this->impl->mtx_run);
 
     if (this->impl->initialized == false) {
         throw std::runtime_error("Its not initialized");
@@ -127,6 +215,9 @@ void lleapi::v1::lle::shutdown() {
 
 
 lleapi::v1::image_ptr lleapi::v1::lle::predict(lleapi::v1::image_ptr image) {
+
+    std::scoped_lock lock(this->impl->mtx_run);
+
     try {
         if (!impl || !impl->initialized || !impl->session)
             throw std::runtime_error("lle::predict(): not initialized");
@@ -257,6 +348,7 @@ lleapi::v1::image_ptr lleapi::v1::lle::predict(lleapi::v1::image_ptr image) {
 }
 
 lleapi::v1::image_ptr lleapi::v1::lle::predict(const std::string & path) {
+
     try {
 
         
@@ -287,6 +379,14 @@ lleapi::v1::lle_ptr lleapi::v1::lle::create(memoryPool_ptr pool) {
 }
 
 
+lleapi::v1::lle_ptr lleapi::v1::lle::create() {
+    try {
+        return std::shared_ptr<lleapi::v1::lle>();
+    }
+    catch (...) {
+        throw;
+    }
+}
 
 #pragma endregion
 

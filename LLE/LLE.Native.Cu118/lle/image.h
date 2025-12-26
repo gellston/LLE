@@ -29,7 +29,7 @@ namespace lleapi {
 
 #pragma region Constructor
 			/// <summary>
-			/// 생성자
+			/// Constructor
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API image(const uint32_t & width, const uint32_t& height, const uint32_t& channel);
@@ -45,7 +45,7 @@ namespace lleapi {
 
 #pragma region Destructor
 			/// <summary>
-			/// 파괴자
+			/// Destructor
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API ~image();
@@ -53,37 +53,37 @@ namespace lleapi {
 
 #pragma region Public Functions
 			/// <summary>
-			/// 이미지 너비
+			/// Image width
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API uint32_t width();
 
 			/// <summary>
-			/// 이미지 높이
+			/// Image height
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API uint32_t height();
 
 			/// <summary>
-			/// 이미지 채널
+			/// Image channel
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API uint32_t channel();
 
 			/// <summary>
-			/// 이미지 포인터의 시작주소 
+			/// Image buffer start pointer
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API unsigned char* data();
 
 			/// <summary>
-			/// 이미지 전체 픽셀 크기
+			/// Total image pixel size
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API std::size_t size();
 
 			/// <summary>
-			/// stride 크기 
+			/// Image stride size
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API uint32_t stride();

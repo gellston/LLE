@@ -25,15 +25,15 @@ namespace lleapi {
 
 #pragma region Constructor
 			/// <summary>
-			/// 생성자
+			/// Constructor
 			/// </summary>
 			/// <returns></returns>
-			LLE_NATIVE_API memoryPool(std::initializer_list<std::size_t> bins = { 3145728, 786432, 196608 }, std::size_t unit_size = 64, double efficient_rate = 0.9);
+			LLE_NATIVE_API memoryPool(std::initializer_list<std::size_t> bins = { 3145728, 786432, 196608 }, std::size_t unit_size = 64, double minRequestedToBinRatio = 0.9);
 #pragma endregion
 
 #pragma region Private Functions
 			/// <summary>
-			/// Align Size를 계산하기 위한 함수
+			/// compute align size
 			/// </summary>
 			/// <param name="size"></param>
 			/// <param name="unit_size"></param>
@@ -42,7 +42,7 @@ namespace lleapi {
 
 
 			/// <summary>
-			/// 메모리블록을 찾는 함수. 만약 없다면 생성
+			/// find memory block from internal inactive memory table
 			/// </summary>
 			/// <param name="aligned_size"></param>
 			/// <returns></returns>
@@ -53,7 +53,7 @@ namespace lleapi {
 		public:
 #pragma region Destructor
 			/// <summary>
-			/// 파괴자
+			/// Destructor
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API ~memoryPool();
@@ -61,40 +61,40 @@ namespace lleapi {
 
 #pragma region Public Functions
 			/// <summary>
-			/// 메모리 풀로부터 메모리 블록을 가져오는 함수
+			/// Acquire memory block (memory token) from inactive memory table
 			/// </summary>
 			/// <param name="size"></param>
 			/// <returns></returns>
 			LLE_NATIVE_API memoryToken_ptr acquire(const std::size_t& size);
 
 			/// <summary>
-			/// 메모리풀 bin을 전부 초기화하는 함수
+			/// Init all memory pool
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API void reset();
 
 
 			/// <summary>
-			/// 현재 설정된 EfficientRate를 리턴
+			/// Return current min requested to bin ratio
 			/// </summary>
 			/// <returns></returns>
-			LLE_NATIVE_API double efficientRate();
+			LLE_NATIVE_API double minRequestedToBinRatio();
 
 			/// <summary>
-			/// EfficientRate를 설정하는 함수
+			/// Set current min requested to bin ratio
 			/// </summary>
 			/// <returns></returns>
-			LLE_NATIVE_API void efficientRate(double rate);
+			LLE_NATIVE_API void minRequestedToBinRatio(double rate);
 
 #pragma endregion
 
 #pragma region Static Functions
 			/// <summary>
-			/// 메모리풀 객체를 생성하는 함수
+			/// Create memory pool class
 			/// </summary>
 			/// <param name="bins"></param>
 			/// <returns></returns>
-			LLE_NATIVE_API static memoryPool_ptr create(std::initializer_list<std::size_t> bins = { 3145728, 786432, 196608 }, const std::size_t& unit_size = 64, double efficient_rate = 0.9);
+			LLE_NATIVE_API static memoryPool_ptr create(std::initializer_list<std::size_t> bins = { 3145728, 786432, 196608 }, const std::size_t& unit_size = 64, double minRequestedToBinRatio = 0.9);
 #pragma endregion
 
 

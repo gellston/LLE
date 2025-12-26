@@ -11,4 +11,7 @@
       <BuildDependency Project="LLE.Native.Cu118/LLE.Native.Cu118.vcxproj" />
     </Project>
   </Folder>
+  <Folder Name="/Examples/">
+    <Project Path="CppInference/CppInference.vcxproj" Id="f48051c1-627a-49a9-930a-2fde90ddda4e" />
+  </Folder>
 </Solution>

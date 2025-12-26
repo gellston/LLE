@@ -20,7 +20,7 @@ namespace lleapi {
 			std::map<std::size_t, std::vector<memoryBlock_ptr>> inactive;
 			std::size_t unit_size = 64;
 
-			double efficient_rate = 0.9;
+			double minRequestedToBinRatio = 0.9;
 
 			std::mutex mtx_alloc;
 		};
@@ -31,7 +31,7 @@ namespace lleapi {
 
 
 #pragma region Constructor
-lleapi::v1::memoryPool::memoryPool(std::initializer_list<std::size_t> bins , std::size_t unit_size, double efficient_rate) : impl(new impl_memoryPool()) {
+lleapi::v1::memoryPool::memoryPool(std::initializer_list<std::size_t> bins , std::size_t unit_size, double minRequestedToBinRatio) : impl(new impl_memoryPool()) {
 
 	if (unit_size == 0) {
 		throw std::runtime_error("Invalid unit size");
@@ -41,12 +41,12 @@ lleapi::v1::memoryPool::memoryPool(std::initializer_list<std::size_t> bins , std
 		throw std::runtime_error("Invalid bin size");
 	}
 
-	if (efficient_rate < 0.5 || efficient_rate > 1.0) {
+	if (minRequestedToBinRatio < 0.5 || minRequestedToBinRatio > 1.0) {
 		throw std::runtime_error("Invalid efficient rate");
 	}
 
 	this->impl->unit_size = unit_size;
-	this->impl->efficient_rate = efficient_rate;
+	this->impl->minRequestedToBinRatio = minRequestedToBinRatio;
 
 	for (auto& bin : bins) {
 		auto aligned_size = this->computeAlignSize(bin);
@@ -126,7 +126,7 @@ lleapi::v1::memoryToken_ptr lleapi::v1::memoryPool::acquire(const std::size_t & 
 			//만약 사용자가 설정한 효율 비율?보다 높다면 그대로 리턴
 			if (bin > aligned_size) {
 				double percent = (double)aligned_size / (double)bin;
-				if (percent >= this->impl->efficient_rate) {
+				if (percent >= this->impl->minRequestedToBinRatio) {
 					return this->findToken(size, bin);
 				}
 			}
@@ -171,21 +171,21 @@ void lleapi::v1::memoryPool::reset() {
 }
 
 
-double lleapi::v1::memoryPool::efficientRate() {
-	return this->impl->efficient_rate;
+double lleapi::v1::memoryPool::minRequestedToBinRatio() {
+	return this->impl->minRequestedToBinRatio;
 }
 
-void lleapi::v1::memoryPool::efficientRate(double rate) {
+void lleapi::v1::memoryPool::minRequestedToBinRatio(double rate) {
 
-	this->impl->efficient_rate = std::clamp(rate, 0.5, 1.0);;
+	this->impl->minRequestedToBinRatio = std::clamp(rate, 0.5, 1.0);;
 }
 #pragma endregion
 
 
 #pragma region Static Functions
-lleapi::v1::memoryPool_ptr lleapi::v1::memoryPool::create(std::initializer_list<std::size_t> bins, const std::size_t& unit_size, double efficient_rate) {
+lleapi::v1::memoryPool_ptr lleapi::v1::memoryPool::create(std::initializer_list<std::size_t> bins, const std::size_t& unit_size, double minRequestedToBinRatio) {
 	try {
-		auto raw_pointer = new lleapi::v1::memoryPool(bins, unit_size, efficient_rate);
+		auto raw_pointer = new lleapi::v1::memoryPool(bins, unit_size, minRequestedToBinRatio);
 		return std::shared_ptr<lleapi::v1::memoryPool>(raw_pointer);
 	}
 	catch (...) {

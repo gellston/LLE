@@ -29,7 +29,7 @@ namespace lleapi {
 
 #pragma region Constructor
 			/// <summary>
-			/// 생성자
+			/// Constructor
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API memoryBlock(const std::size_t& size);
@@ -40,7 +40,7 @@ namespace lleapi {
 			
 #pragma region Destructor
 			/// <summary>
-			/// 파괴자
+			/// Destructor
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API ~memoryBlock();
@@ -48,13 +48,13 @@ namespace lleapi {
 
 #pragma region Public Functions
 			/// <summary>
-			/// memory block 사이즈
+			/// memory block size
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API std::size_t size();
 
 			/// <summary>
-			/// memory block 시작주소 
+			/// memory block start address 
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API uint8_t* data();
@@ -62,7 +62,7 @@ namespace lleapi {
 
 #pragma region Static Functions
 			/// <summary>
-			/// MemoryBlock 생성 함수
+			/// create memory block
 			/// </summary>
 			/// <param name="size"></param>
 			/// <returns></returns>

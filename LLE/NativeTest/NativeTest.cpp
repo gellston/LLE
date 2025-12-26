@@ -4,23 +4,28 @@
 
 #include <iostream>
 
-
 int main()
 {
 
     try {
-        auto pool = lleapi::v1::memoryPool::create();
+        // create lle instance
+        auto lle = lleapi::v1::lle::create();
 
-        auto lle = lleapi::v1::lle::create(pool);
-        lle->setup("C://github//LLE//python//results//model.onnx", lleapi::v1::device::cpu);
+        // load zerodce model and load on cpu
+        // its also support onnx model load from path
+        lle->setup(lleapi::v1::dlType::zeroDCE, lleapi::v1::device::cpu);
 
-        auto input = lleapi::v1::image::imread("C://github//dataset//lol_dataset//our485//low//low_15.png", lleapi::v1::colorType::color, pool);
-        auto output1 = lle->predict(input);
-        lleapi::v1::image::imwrite("C://github//LLE//LLE//x64//Debug//result1.jpg", output1);
+        // load color image
+        auto input = lleapi::v1::image::imread("C://github//dataset//lol_dataset//our485//low//low_15.png", lleapi::v1::colorType::color);
 
-        auto output2 = lle->predict("C://github//dataset//lol_dataset//our485//low//low_15.png");
-        lleapi::v1::image::imwrite("C://github//LLE//LLE//x64//Debug//result2.jpg", output1);
+        // predict 
+        auto output = lle->predict(input);
 
+        // save image file on disk
+        lleapi::v1::image::imwrite("C://github//LLE//LLE//x64//Debug//result1.jpg", output);
+
+
+        // cleanup internal instance
         lle->shutdown();
 
     }
