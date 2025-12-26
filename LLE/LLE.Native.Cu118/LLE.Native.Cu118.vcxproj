@@ -152,7 +152,7 @@
       <Command>xcopy /Y /E /I "$(SolutionDir)packages\Microsoft.ML.OnnxRuntime.Gpu.Windows.1.17.3\runtimes\win-x64\native\*.dll" "$(OutDir)"
 xcopy /Y /E /I "$(SolutionDir)LLE.Native.Cu118\lle" "$(SolutionDir)LLE.Native.Cu118.Package\build\native\include\lle"
 xcopy /Y /E /I "$(OutDir)*.lib" "$(SolutionDir)LLE.Native.Cu118.Package\build\native\lib\x64\"
-xcopy /Y /E /I "$(OutDir)*.dll" "$(SolutionDir)LLE.Native.Cu118.Package\build\native\bin\"</Command>
+xcopy /Y /E /I "$(OutDir)*.dll" "$(SolutionDir)LLE.Native.Cu118.Package\build\native\bin\x64\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
