@@ -16,3 +16,4 @@
 /LLE/LLE.Native.Cu118.Package/build/native/lib/x64
 /LLE/x64/Release
 *.nupkg
+/LLE/LLE.Native.Cu118.Package/build/native/bin
