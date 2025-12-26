@@ -10,3 +10,9 @@
 /python/results/output_images
 /LLE/NativeTest/x64/Debug
 /LLE/packages/Microsoft.ML.OnnxRuntime.Gpu.Windows.1.17.3
+/LLE/LLE.Native.Cu118/x64
+/LLE/LLE.Native.Cu118.Package/build/native/bin/x64
+/LLE/LLE.Native.Cu118.Package/build/native/include/lle
+/LLE/LLE.Native.Cu118.Package/build/native/lib/x64
+/LLE/x64/Release
+*.nupkg
