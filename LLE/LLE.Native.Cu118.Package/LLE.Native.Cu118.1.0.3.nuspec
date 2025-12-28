@@ -16,11 +16,6 @@
     <tags>c++,c++/cli,ai,deeplearning,onnx</tags>
   </metadata>
   <files>
-    <file src="build\native\bin\x64\cublas64_11.dll" target="build\native\bin\x64\cublas64_11.dll" />
-    <file src="build\native\bin\x64\cublasLt64_11.dll" target="build\native\bin\x64\cublasLt64_11.dll" />
-    <file src="build\native\bin\x64\cudnn64_8.dll" target="build\native\bin\x64\cudnn64_8.dll" />
-    <file src="build\native\bin\x64\cudnn_cnn_infer64_8.dll" target="build\native\bin\x64\cudnn_cnn_infer64_8.dll" />
-    <file src="build\native\bin\x64\cudnn_ops_infer64_8.dll" target="build\native\bin\x64\cudnn_ops_infer64_8.dll" />
     <file src="build\native\bin\x64\jpeg62.dll" target="build\native\bin\x64\jpeg62.dll" />
     <file src="build\native\bin\x64\liblzma.dll" target="build\native\bin\x64\liblzma.dll" />
     <file src="build\native\bin\x64\libpng16.dll" target="build\native\bin\x64\libpng16.dll" />
