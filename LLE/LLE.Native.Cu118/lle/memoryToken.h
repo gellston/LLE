@@ -65,9 +65,6 @@ namespace lleapi {
 			/// </summary>
 			/// <returns></returns>
 			LLE_NATIVE_API uint8_t* data();
-
-
-
 #pragma endregion
 
 

@@ -4,6 +4,9 @@
     <Platform Name="x86" />
   </Configurations>
   <Folder Name="/API/">
+    <Project Path="LLE.Managed.Cu118/LLE.Managed.Cu118.vcxproj">
+      <BuildDependency Project="LLE.Native.Cu118/LLE.Native.Cu118.vcxproj" />
+    </Project>
     <Project Path="LLE.Native.Cu118/LLE.Native.Cu118.vcxproj" Id="f629d307-3210-46e4-a83b-9af89117d9b1" />
   </Folder>
   <Folder Name="/Console/">

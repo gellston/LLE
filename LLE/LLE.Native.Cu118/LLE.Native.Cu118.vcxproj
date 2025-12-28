@@ -152,7 +152,15 @@
       <Command>xcopy /Y /E /I "$(SolutionDir)packages\Microsoft.ML.OnnxRuntime.Gpu.Windows.1.17.3\runtimes\win-x64\native\*.dll" "$(OutDir)"
 xcopy /Y /E /I "$(SolutionDir)LLE.Native.Cu118\lle" "$(SolutionDir)LLE.Native.Cu118.Package\build\native\include\lle"
 xcopy /Y /E /I "$(OutDir)*.lib" "$(SolutionDir)LLE.Native.Cu118.Package\build\native\lib\x64\"
-xcopy /Y /E /I "$(OutDir)*.dll" "$(SolutionDir)LLE.Native.Cu118.Package\build\native\bin\x64\"</Command>
+xcopy /Y /E /I "$(OutDir)*.dll" "$(SolutionDir)LLE.Native.Cu118.Package\build\native\bin\x64\"
+
+copy /Y "$(CUDA_PATH_V11_8)\bin\onnxruntime.dll"         "$(SolutionDir)LLE.Native.Cu118.Package\build\native\bin\x64\"
+copy /Y "$(CUDA_PATH_V11_8)\bin\cudart64_118.dll"        "$(SolutionDir)LLE.Native.Cu118.Package\build\native\bin\x64\"
+copy /Y "$(CUDA_PATH_V11_8)\bin\cublas64_11.dll"         "$(SolutionDir)LLE.Native.Cu118.Package\build\native\bin\x64\"
+copy /Y "$(CUDA_PATH_V11_8)\bin\cublasLt64_11.dll"       "$(SolutionDir)LLE.Native.Cu118.Package\build\native\bin\x64\"
+copy /Y "$(CUDA_PATH_V11_8)\bin\cudnn64_8.dll"           "$(SolutionDir)LLE.Native.Cu118.Package\build\native\bin\x64\"
+copy /Y "$(CUDA_PATH_V11_8)\bin\cudnn_ops_infer64_8.dll" "$(SolutionDir)LLE.Native.Cu118.Package\build\native\bin\x64\"
+copy /Y "$(CUDA_PATH_V11_8)\bin\cudnn_cnn_infer64_8.dll" "$(SolutionDir)LLE.Native.Cu118.Package\build\native\bin\x64\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

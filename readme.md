@@ -4,15 +4,30 @@
 
   # LLE (Low Light Enhancement)
 
-  AI-based Low-Light Enhancement inference API for **Windows x64**.
+  AI-based Low-Light Enhancement inference API for <b>Windows x64</b>.
 
-  [![NuGet](https://img.shields.io/nuget/v/LLE.Native.Cu118.svg?style=for-the-badge&logo=nuget)](https://www.nuget.org/packages/LLE.Native.Cu118)
-  ![C++](https://img.shields.io/badge/C%2B%2B-Used-00599C?style=for-the-badge&logo=c%2B%2B)
-  ![C++/CLI](https://img.shields.io/badge/C%2B%2B%2FCLI-Used-512BD4?style=for-the-badge)
-  ![C%23](https://img.shields.io/badge/C%23-Used-512BD4?style=for-the-badge&logo=csharp)
-  ![Python](https://img.shields.io/badge/Python-Model%20Training-3776AB?style=for-the-badge&logo=python)
+  <!-- Native (Cu118) -->
+  <a href="https://www.nuget.org/packages/LLE.Native.Cu118">
+    <img src="https://img.shields.io/nuget/v/LLE.Native.Cu118.svg?style=for-the-badge&logo=nuget&label=NuGet%20Native%20Cu118" />
+  </a>
+  <img src="https://img.shields.io/badge/CUDA-11.8-76B900?style=for-the-badge&logo=nvidia" />
+
+  <br/>
+
+  <!-- Managed (Cu118) -->
+  <a href="https://www.nuget.org/packages/LLE.Managed.Cu118">
+    <img src="https://img.shields.io/nuget/v/LLE.Managed.Cu118.svg?style=for-the-badge&logo=nuget&label=NuGet%20Managed%20Cu118" />
+  </a>
+  <img src="https://img.shields.io/badge/CUDA-11.8-76B900?style=for-the-badge&logo=nvidia" />
+
+  <br/>
+
+  <img src="https://img.shields.io/badge/C%2B%2B-Used-00599C?style=for-the-badge&logo=c%2B%2B" />
+  <img src="https://img.shields.io/badge/C%2B%2B%2FCLI-Used-512BD4?style=for-the-badge" />
+  <img src="https://img.shields.io/badge/C%23-Used-512BD4?style=for-the-badge&logo=csharp" />
+  <img src="https://img.shields.io/badge/Python-Model%20Training-3776AB?style=for-the-badge&logo=python" />
+
 </div>
-
 ---
 
 ## Overview
@@ -67,36 +82,22 @@ A quick visual comparison using the bundled sample images.
 - **CPU inference**: no special runtime constraints (beyond standard Windows x64 requirements).
 
 ### CUDA (GPU)
-- **CUDA inference** requires matching GPU runtimes.
-- For `LLE.Native.Cu118`, you must match:
-  - **CUDA Toolkit 11.8**
-  - **cuDNN 8.5.0.96**
+- **CUDA inference** requires an NVIDIA GPU + driver.
+- For `LLE.Native.Cu118`, the package **includes the required CUDA/cuDNN runtime DLLs** for GPU execution.
+  - ✅ You **do not need to install the CUDA Toolkit or cuDNN** separately for typical usage.
+  - ✅ The required DLLs are deployed alongside your app when you reference this package.
+- **You still must have an NVIDIA driver installed** (this cannot be bundled by NuGet).
+
+> If CUDA inference fails to load (e.g., DLL not found / entry point not found), the most common cause is an
+> outdated/incompatible NVIDIA driver. Update the GPU driver and try again.
 
 ### CPU + CUDA Mixed Usage (Important)
 - `LLE.Native.Cu118` can be used in a **mixed mode**:
   - You can run **CPU inference** regardless of CUDA availability.
-  - When CUDA/cuDNN is correctly installed, you can also run **CUDA inference**.
-  - This enables flexible usage such as **CPU fallback** or **choosing CPU/CUDA per workload**.
+  - When the NVIDIA driver is present and compatible, you can also run **CUDA inference**.
+  - This enables **CPU fallback** or choosing **CPU/CUDA per workload**.
 
 > If CUDA inference fails to load (DLL not found / entry point not found), verify your installed **CUDA** and **cuDNN** versions match the package.
-
-#### Downloads (CUDA / cuDNN)
-CUDA / cuDNN downloads are provided by NVIDIA. cuDNN downloads may require an NVIDIA Developer account.
-
-```text
-CUDA Toolkit 11.8 (Windows x86_64):
-https://developer.nvidia.com/cuda-11-8-0-download-archive
-
-CUDA Toolkit Archive (if you need other versions later):
-https://developer.nvidia.com/cuda-toolkit-archive
-
-cuDNN Archive (select cuDNN 8.5.0.x, matching CUDA 11.x build):
-https://developer.nvidia.com/rdp/cudnn-archive
-
-cuDNN 8.5.0 Release Notes:
-https://docs.nvidia.com/deeplearning/cudnn/archives/cudnn-850/release-notes/rel_8.html
-```
-
 ---
 
 ## Development Environment
@@ -222,6 +223,24 @@ We sincerely thank the authors and contributors of these works for advancing low
 
 
 ## License
+
+This project is licensed under the **MIT License** (for the LLE source code).
+
+### Third-party notices (important)
+This distribution may include third-party components and/or binaries.  
+Those components are **NOT** covered by the MIT License and remain subject to their respective licenses/terms.
+
+Included third-party license texts are provided under the `licenses/` folder:
+
+- `CUDA-EULA.txt` — NVIDIA CUDA runtime components (redistributables)
+- `cudnn-LICENSE.txt` — NVIDIA cuDNN runtime components
+- `onnxruntime-LICENSE.txt` — ONNX Runtime license
+- `onnxruntime-ThirdPartyNotices.txt` — ONNX Runtime third-party notices
+- `opencv-LICENSE.txt` — OpenCV license
+
+By using this package, you agree to comply with all applicable third-party license terms in addition to the MIT License.
+
+---
 
 MIT License
 
