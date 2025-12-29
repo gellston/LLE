@@ -29,3 +29,5 @@
 /LLE/LLE.Managed.Cu118/Release
 /LLE/LLE.Managed.Cu118.Package/runtimes/win-x64/native
 /LLE/LLE.Managed.Cu118.Package/lib
+/LLE/CSharpInference/bin
+/LLE/CSharpInference/obj
