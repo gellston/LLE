@@ -19,7 +19,7 @@ namespace lleapi {
 
 namespace LLEAPI {
 	namespace V1 {
-		ref class MemoryPool {
+		public ref class MemoryPool {
 		private:
 #pragma region Private Property
 			lleapi::v1::memoryPool_ptr* instance = nullptr;

@@ -18,12 +18,12 @@ namespace lleapi {
 namespace LLEAPI {
 	namespace V1 {
 
-		enum class ColorType {
+		public enum class ColorType {
 			Gray,
 			Color
 		};
 
-		ref class Image {
+		public ref class Image {
 #pragma region Private Property
 		private:
 			lleapi::v1::image_ptr* instance = nullptr;

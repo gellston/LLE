@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ManagedTest": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}

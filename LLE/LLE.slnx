@@ -1,5 +1,6 @@
 <Solution>
   <Configurations>
+    <Platform Name="Any CPU" />
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
@@ -10,6 +11,9 @@
     <Project Path="LLE.Native.Cu118/LLE.Native.Cu118.vcxproj" Id="f629d307-3210-46e4-a83b-9af89117d9b1" />
   </Folder>
   <Folder Name="/Console/">
+    <Project Path="ManagedTest/ManagedTest.csproj" Id="ca17ed35-c354-4cb4-81f2-f94848f070f7">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
     <Project Path="NativeTest/NativeTest.vcxproj" Id="ad73e871-c1c4-4c87-a459-e3c664d4d4ad">
       <BuildDependency Project="LLE.Native.Cu118/LLE.Native.Cu118.vcxproj" />
     </Project>

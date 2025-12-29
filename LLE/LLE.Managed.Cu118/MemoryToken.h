@@ -16,7 +16,7 @@ namespace lleapi {
 //C#
 namespace LLEAPI {
 	namespace V1 {
-		ref class MemoryToken {
+		public ref class MemoryToken {
 #pragma region Private Property
 		private:
 			lleapi::v1::memoryToken_ptr* instance = nullptr;

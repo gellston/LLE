@@ -16,16 +16,16 @@ namespace lleapi {
 
 namespace LLEAPI {
 	namespace V1 {
-		enum class DlType {
+		public enum class DlType {
 			ZeroDCE
 		};
 
-		enum class Device {
+		public enum class Device {
 			Cpu,
 			Cuda
 		};
 
-		ref class LLE {
+		public ref class LLE {
 		private:
 #pragma region Private Property
 			bool disposed = false;
