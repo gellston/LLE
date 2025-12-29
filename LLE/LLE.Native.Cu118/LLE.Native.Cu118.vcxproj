@@ -153,7 +153,10 @@
 xcopy /Y /E /I "$(SolutionDir)LLE.Native.Cu118\lle" "$(SolutionDir)LLE.Native.Cu118.Package\build\native\include\lle"
 xcopy /Y /E /I "$(OutDir)*.lib" "$(SolutionDir)LLE.Native.Cu118.Package\build\native\lib\x64\"
 xcopy /Y /E /I "$(OutDir)*.dll" "$(SolutionDir)LLE.Native.Cu118.Package\build\native\bin\x64\"
-</Command>
+
+
+
+xcopy /Y /E /I "$(OutDir)*.dll" "$(SolutionDir)LLE.Managed.Cu118.Package\runtimes\win-x64\native\"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿namespace ManagedTest
+﻿namespace CSharpInference
 {
     internal class Program
     {

@@ -14,9 +14,9 @@
 
   <br/>
 
-  <!-- Managed (Cu118) -->
-  <a href="https://www.nuget.org/packages/LLE.Managed.Cu118">
-    <img src="https://img.shields.io/nuget/v/LLE.Managed.Cu118.svg?style=for-the-badge&logo=nuget&label=NuGet%20Managed%20Cu118" />
+  <!-- Managed (Cuda118) -->
+  <a href="https://www.nuget.org/packages/LLE.Managed.Cuda118">
+    <img src="https://img.shields.io/nuget/v/LLE.Managed.Cuda118.svg?style=for-the-badge&logo=nuget&label=NuGet%20Managed%20Cuda118" />
   </a>
   <img src="https://img.shields.io/badge/CUDA-11.8-76B900?style=for-the-badge&logo=nvidia" />
 
@@ -28,7 +28,7 @@
   <img src="https://img.shields.io/badge/Python-Model%20Training-3776AB?style=for-the-badge&logo=python" />
 
 </div>
----
+
 
 ## Overview
 
@@ -38,7 +38,18 @@
 - Author / Maintainer: **gellston**
 - Examples:
   * [`CppInference`](https://github.com/gellston/LLE/tree/main/LLE/CppInference)
-  
+  * [`CSharpInference`](https://github.com/gellston/LLE/tree/main/LLE/CSharpInference)
+
+### NuGet Packages (Native vs Managed)
+
+- **`LLE.Native.Cu118`** *(C++ / native)*  
+  Native runtime + C++ API for Windows x64. Use this if you want to call LLE directly from C++.
+
+- **`LLE.Managed.Cuda118`** *(C# / .NET)*  
+  A managed wrapper (C++/CLI) around the native runtime for a smoother .NET experience on Windows x64.
+
+> Both packages target **Windows x64**. GPU inference requires a compatible NVIDIA GPU environment (see below).
+
 ## Sample Result (Before / After)
 
 A quick visual comparison using the bundled sample images.
@@ -57,15 +68,14 @@ A quick visual comparison using the bundled sample images.
   and expand model options as the project evolves.
 
 > LLE is not a one-off release. Model quality and available variants may improve through updates.
+
 ### Training Scripts
 - Training scripts used for model development are available here:
   * https://github.com/gellston/LLE/tree/main/python
 
-
 ### Dataset
 - This project used the **LOLI-Street** low-light street image dataset:
   * https://www.kaggle.com/datasets/tanvirnwu/loli-street-low-light-image-enhancement-of-street
-
 
 ---
 
@@ -83,21 +93,36 @@ A quick visual comparison using the bundled sample images.
 
 ### CUDA (GPU)
 - **CUDA inference** requires an NVIDIA GPU + driver.
-- For `LLE.Native.Cu118`, the package **includes the required CUDA/cuDNN runtime DLLs** for GPU execution.
-  - ✅ You **do not need to install the CUDA Toolkit or cuDNN** separately for typical usage.
-  - ✅ The required DLLs are deployed alongside your app when you reference this package.
-- **You still must have an NVIDIA driver installed** (this cannot be bundled by NuGet).
+- **You must install CUDA 11.8** on the target machine.
+- **You must install cuDNN 8.5.0.96** (CUDA 11.x build) on the target machine.
+- This package **does not bundle** the NVIDIA CUDA / cuDNN redistributable DLLs.
+  - Make sure CUDA/cuDNN DLLs are discoverable at runtime (e.g., in `PATH` or alongside your app).
 
-> If CUDA inference fails to load (e.g., DLL not found / entry point not found), the most common cause is an
-> outdated/incompatible NVIDIA driver. Update the GPU driver and try again.
+> If CUDA inference fails to load (e.g., DLL not found / entry point not found), the most common causes are:
+> - NVIDIA driver is outdated/incompatible
+> - CUDA/cuDNN versions do not match (**CUDA 11.8 + cuDNN 8.5.0.96**)
+> - CUDA/cuDNN DLLs are not on `PATH` (or not deployed next to the executable)
+
+### CUDA / cuDNN Installation Links
+
+> Note: NVIDIA downloads may require an NVIDIA Developer account login.
+
+- **CUDA Toolkit 11.8 (Windows x86_64)**  
+  https://developer.nvidia.com/cuda-11-8-0-download-archive?target_os=Windows&target_arch=x86_64
+
+- **cuDNN v8.5.0.96 (CUDA 11.x, Windows x86_64 zip)**  
+  Option A (recommended entry): cuDNN Archive (pick **v8.5.0 for CUDA 11.x** → **Windows x86_64 (Zip)**)  
+  https://developer.nvidia.com/rdp/cudnn-archive
+
+  Option B (direct file; will redirect to NVIDIA login):  
+  https://developer.nvidia.com/compute/cudnn/secure/8.5.0/local_installers/11.7/cudnn-windows-x86_64-8.5.0.96_cuda11-archive.zip
 
 ### CPU + CUDA Mixed Usage (Important)
-- `LLE.Native.Cu118` can be used in a **mixed mode**:
+- `LLE.Native.Cu118` and `LLE.Managed.Cu118`  can be used in a **mixed mode**:
   - You can run **CPU inference** regardless of CUDA availability.
-  - When the NVIDIA driver is present and compatible, you can also run **CUDA inference**.
+  - To run **CUDA inference**, you must have a compatible NVIDIA driver + **CUDA 11.8** + **cuDNN 8.5.0.96** installed/configured.
   - This enables **CPU fallback** or choosing **CPU/CUDA per workload**.
 
-> If CUDA inference fails to load (DLL not found / entry point not found), verify your installed **CUDA** and **cuDNN** versions match the package.
 ---
 
 ## Development Environment
@@ -123,9 +148,10 @@ LLE is not a “single one-off release”. The NuGet packages can be **updated o
 
 Current / planned package list:
 
-- **`LLE.Native.Cu118`** (Windows x64, CPU, CUDA 11.8 + cuDNN 8.5.0.96)  
+- **`LLE.Native.Cu118`** (Windows x64, native runtime, CPU, requires **CUDA 11.8 + cuDNN 8.5.0.96** for GPU)  
   https://www.nuget.org/packages/LLE.Native.Cu118
-- **(planned)** `LLE.Managed.Cu118` (Windows x64, improved .NET experience)
+- **`LLE.Managed.Cuda118`** (Windows x64, managed wrapper for .NET / C#; uses the native runtime under the hood)  
+  https://www.nuget.org/packages/LLE.Managed.Cuda118
 
 > The list may expand (e.g., different CUDA versions) and existing packages may receive updates.
 
@@ -133,14 +159,26 @@ Current / planned package list:
 
 ## Installation
 
-### Package Manager
+### C++ (native)
+#### Package Manager
 ```powershell
 Install-Package LLE.Native.Cu118
 ```
 
-### .NET CLI
+#### .NET CLI
 ```bash
 dotnet add package LLE.Native.Cu118
+```
+
+### .NET / C# (managed wrapper)
+#### Package Manager
+```powershell
+Install-Package LLE.Managed.Cuda118
+```
+
+#### .NET CLI
+```bash
+dotnet add package LLE.Managed.Cuda118
 ```
 
 ---
@@ -158,26 +196,21 @@ int main()
     try {
         // create lle instance
         auto lle = lleapi::v1::lle::create();
-
         // load Zero-DCE++ model on CPU
         // (also supports loading an ONNX model from a file path)
         lle->setup(lleapi::v1::dlType::zeroDCE, lleapi::v1::device::cpu);
-
         // load color image
         auto input = lleapi::v1::image::imread(
             "C://github//dataset//lol_dataset//our485//low//low_15.png",
             lleapi::v1::colorType::color
         );
-
         // predict
         auto output = lle->predict(input);
-
         // save result image
         lleapi::v1::image::imwrite(
             "C://github//LLE//LLE//x64//Debug//result1.jpg",
             output
         );
-
         // cleanup internal instance
         lle->shutdown();
     }
@@ -187,11 +220,51 @@ int main()
 }
 ```
 
+## Usage in C#
+
+```csharp
+namespace ManagedTest
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            try
+            {
+                //// Create LLE Instance
+                var lle = LLEAPI.V1.LLE.Create();
+                //// load zerodce model and load on cpu
+                //// its also support onnx model load from path
+                lle.Setup(LLEAPI.V1.DlType.ZeroDCE, LLEAPI.V1.Device.Cpu);
+                //// load color image
+                var input = LLEAPI.V1.Image.Imread(
+                    "C://github//dataset//lol_dataset//our485//low//low_15.png", 
+                    LLEAPI.V1.ColorType.Color);
+                //// predict 
+                var output = lle.Predict(input);
+                //// save image file on disk
+                LLEAPI.V1.Image.Imwrite(
+                    "C://github//LLE//LLE//x64//Debug//result1.jpg",
+                    output);
+                //// cleanup internal instance
+                lle.Shutdown();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine(ex.ToString());
+            }
+        }
+    }
+}
+
+```
+
 ---
 
 ## Roadmap
 
-- [ ] Add first-class **C# support** (planned)
+- [x] Provide a managed NuGet wrapper for **.NET / C#** (**`LLE.Managed.Cuda118`**)
+- [ ] Improve .NET API ergonomics (more idiomatic C# surface)
 - [ ] Add additional runtime variants (e.g., different CUDA versions)
 - [ ] Improve low-light enhancement model quality and provide more model options/variants
 
@@ -220,7 +293,6 @@ We sincerely thank the authors and contributors of these works for advancing low
 > Note: Please also comply with the licenses/terms of any upstream code, weights, and third-party libraries you use or redistribute.
 
 ---
-
 
 ## License
 

@@ -1,0 +1,11 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <_NativeBinaries Include="$(MSBuildThisFileDirectory)..\runtimes\win-x64\native\*.dll" />
+  </ItemGroup>
+
+  <Target Name="CopyNativeBinariesFromNuGet" AfterTargets="Build">
+    <Copy SourceFiles="@(_NativeBinaries)"
+          DestinationFolder="$(TargetDir)"
+          SkipUnchangedFiles="true" />
+  </Target>
+</Project>
