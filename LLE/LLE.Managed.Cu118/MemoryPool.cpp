@@ -56,6 +56,10 @@ double LLEAPI::V1::MemoryPool::MinRequestedToBinRatio::get() {
 void LLEAPI::V1::MemoryPool::MinRequestedToBinRatio::set(double value) {
 	this->instance->get()->minRequestedToBinRatio(value);
 }
+
+System::IntPtr LLEAPI::V1::MemoryPool::Handle::get() {
+	return System::IntPtr(this->instance);
+}
 #pragma endregion
 
 
@@ -80,6 +84,44 @@ void LLEAPI::V1::MemoryPool::Reset() {
 	}
 }
 #pragma endregion
+
+
+#pragma region Static Functoins
+LLEAPI::V1::MemoryPool^ LLEAPI::V1::MemoryPool::Create() {
+	try {
+
+		return  LLEAPI::V1::MemoryPool::Create(gcnew array<std::size_t>{ 3145728, 786432, 196608 }, 64, 0.9);
+
+	}
+	catch (std::exception ex) {
+		throw gcnew System::Exception(msclr::interop::marshal_as<System::String^>(ex.what()));
+	}
+}
+
+LLEAPI::V1::MemoryPool^ LLEAPI::V1::MemoryPool::Create(array<std::size_t>^ bins, std::size_t unitSize, double minRequestedToBinRatio) {
+	try {
+
+		if (bins == nullptr)
+			bins = gcnew array<std::size_t>{ 3145728, 786432, 196608 };
+
+		std::vector<size_t> v;
+		v.reserve(bins->Length);
+		for each (auto x in bins)
+		{
+			if (x <= 0) throw gcnew System::ArgumentOutOfRangeException("bins");
+			v.push_back(static_cast<size_t>(x));
+		}
+
+		auto nativePool = lleapi::v1::memoryPool::create(v, unitSize, minRequestedToBinRatio);
+
+		return gcnew LLEAPI::V1::MemoryPool(nativePool);
+	}
+	catch (std::exception ex) {
+		throw gcnew System::Exception(msclr::interop::marshal_as<System::String^>(ex.what()));
+	}
+}
+#pragma endregion
+
 
 
 

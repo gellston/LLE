@@ -31,7 +31,7 @@ namespace lleapi {
 
 
 #pragma region Constructor
-lleapi::v1::memoryPool::memoryPool(std::initializer_list<std::size_t> bins , std::size_t unit_size, double minRequestedToBinRatio) : impl(new impl_memoryPool()) {
+lleapi::v1::memoryPool::memoryPool(std::vector<std::size_t> bins , std::size_t unit_size, double minRequestedToBinRatio) : impl(new impl_memoryPool()) {
 
 	if (unit_size == 0) {
 		throw std::runtime_error("Invalid unit size");
@@ -183,7 +183,7 @@ void lleapi::v1::memoryPool::minRequestedToBinRatio(double rate) {
 
 
 #pragma region Static Functions
-lleapi::v1::memoryPool_ptr lleapi::v1::memoryPool::create(std::initializer_list<std::size_t> bins, const std::size_t& unit_size, double minRequestedToBinRatio) {
+lleapi::v1::memoryPool_ptr lleapi::v1::memoryPool::create(std::vector<std::size_t> bins, const std::size_t& unit_size, double minRequestedToBinRatio) {
 	try {
 		auto raw_pointer = new lleapi::v1::memoryPool(bins, unit_size, minRequestedToBinRatio);
 		return std::shared_ptr<lleapi::v1::memoryPool>(raw_pointer);

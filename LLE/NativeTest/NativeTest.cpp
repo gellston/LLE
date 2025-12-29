@@ -8,6 +8,7 @@ int main()
 {
 
     try {
+
         // create lle instance
         auto lle = lleapi::v1::lle::create();
 

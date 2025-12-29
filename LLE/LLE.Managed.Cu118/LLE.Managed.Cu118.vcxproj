@@ -51,7 +51,7 @@
     <PlatformToolset>v145</PlatformToolset>
     <CLRSupport>NetCore</CLRSupport>
     <CharacterSet>Unicode</CharacterSet>
-    <VCToolsVersion>14.50.35717</VCToolsVersion> 
+    <VCToolsVersion>14.50.35717</VCToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
@@ -134,11 +134,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Image.cpp" />
+    <ClCompile Include="LLE.cpp" />
     <ClCompile Include="LLE.Managed.Cu118.cpp" />
     <ClCompile Include="MemoryPool.cpp" />
     <ClCompile Include="MemoryToken.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Image.h" />
+    <ClInclude Include="LLE.h" />
     <ClInclude Include="MemoryPool.h" />
     <ClInclude Include="MemoryToken.h" />
   </ItemGroup>

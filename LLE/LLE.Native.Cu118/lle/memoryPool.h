@@ -4,7 +4,7 @@
 #define LLE_MEMORY_POOL
 
 #include <memory>
-
+#include <vector>
 
 #include "lle_api.h"
 #include "memoryToken.h"
@@ -28,7 +28,7 @@ namespace lleapi {
 			/// Constructor
 			/// </summary>
 			/// <returns></returns>
-			LLE_NATIVE_API memoryPool(std::initializer_list<std::size_t> bins = { 3145728, 786432, 196608 }, std::size_t unit_size = 64, double minRequestedToBinRatio = 0.9);
+			LLE_NATIVE_API memoryPool(std::vector<std::size_t> bins = { 3145728, 786432, 196608 }, std::size_t unit_size = 64, double minRequestedToBinRatio = 0.9);
 #pragma endregion
 
 #pragma region Private Functions
@@ -94,7 +94,7 @@ namespace lleapi {
 			/// </summary>
 			/// <param name="bins"></param>
 			/// <returns></returns>
-			LLE_NATIVE_API static memoryPool_ptr create(std::initializer_list<std::size_t> bins = { 3145728, 786432, 196608 }, const std::size_t& unit_size = 64, double minRequestedToBinRatio = 0.9);
+			LLE_NATIVE_API static memoryPool_ptr create(std::vector<std::size_t> bins = { 3145728, 786432, 196608 }, const std::size_t& unit_size = 64, double minRequestedToBinRatio = 0.9);
 #pragma endregion
 
 

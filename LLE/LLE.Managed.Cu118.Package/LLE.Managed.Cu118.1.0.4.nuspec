@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>LLE.Managed.Cu118</id>
+    <version>1.0.3</version>
+    <title></title>
+    <authors>gellston</authors>
+    <owners></owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/gellston/LLE/blob/main/LICENSE.txt</licenseUrl>
+    <icon>icon.png</icon>
+    <readme>readme.md</readme>
+    <projectUrl>https://github.com/gellston/LLE</projectUrl>
+    <description>Low Light Enhancement Deeplearning Model Inference API</description>
+    <copyright>Copyright (c) 2025–present gellston</copyright>
+    <tags>c++,c++/cli,ai,deeplearning,onnx</tags>
+  </metadata>
+  <files>
+    <file src="build\native\bin\x64\jpeg62.dll" target="build\native\bin\x64\jpeg62.dll" />
+    <file src="build\native\bin\x64\liblzma.dll" target="build\native\bin\x64\liblzma.dll" />
+    <file src="build\native\bin\x64\libpng16.dll" target="build\native\bin\x64\libpng16.dll" />
+    <file src="build\native\bin\x64\libsharpyuv.dll" target="build\native\bin\x64\libsharpyuv.dll" />
+    <file src="build\native\bin\x64\libwebp.dll" target="build\native\bin\x64\libwebp.dll" />
+    <file src="build\native\bin\x64\libwebpdecoder.dll" target="build\native\bin\x64\libwebpdecoder.dll" />
+    <file src="build\native\bin\x64\LLE.Native.Cu118.dll" target="build\native\bin\x64\LLE.Native.Cu118.dll" />
+    <file src="build\native\bin\x64\onnxruntime.dll" target="build\native\bin\x64\onnxruntime.dll" />
+    <file src="build\native\bin\x64\onnxruntime_providers_cuda.dll" target="build\native\bin\x64\onnxruntime_providers_cuda.dll" />
+    <file src="build\native\bin\x64\onnxruntime_providers_shared.dll" target="build\native\bin\x64\onnxruntime_providers_shared.dll" />
+    <file src="build\native\bin\x64\onnxruntime_providers_tensorrt.dll" target="build\native\bin\x64\onnxruntime_providers_tensorrt.dll" />
+    <file src="build\native\bin\x64\opencv_core4.dll" target="build\native\bin\x64\opencv_core4.dll" />
+    <file src="build\native\bin\x64\opencv_highgui4.dll" target="build\native\bin\x64\opencv_highgui4.dll" />
+    <file src="build\native\bin\x64\opencv_imgcodecs4.dll" target="build\native\bin\x64\opencv_imgcodecs4.dll" />
+    <file src="build\native\bin\x64\opencv_imgproc4.dll" target="build\native\bin\x64\opencv_imgproc4.dll" />
+    <file src="build\native\bin\x64\opencv_videoio4.dll" target="build\native\bin\x64\opencv_videoio4.dll" />
+    <file src="build\native\bin\x64\tiff.dll" target="build\native\bin\x64\tiff.dll" />
+    <file src="build\native\bin\x64\zlib1.dll" target="build\native\bin\x64\zlib1.dll" />
+    <file src="build\native\include\lle\image.h" target="build\native\include\lle\image.h" />
+    <file src="build\native\include\lle\lle.h" target="build\native\include\lle\lle.h" />
+    <file src="build\native\include\lle\lle_api.h" target="build\native\include\lle\lle_api.h" />
+    <file src="build\native\include\lle\memoryBlock.h" target="build\native\include\lle\memoryBlock.h" />
+    <file src="build\native\include\lle\memoryPool.h" target="build\native\include\lle\memoryPool.h" />
+    <file src="build\native\include\lle\memoryToken.h" target="build\native\include\lle\memoryToken.h" />
+    <file src="build\native\lib\x64\LLE.Native.Cu118.lib" target="build\native\lib\x64\LLE.Native.Cu118.lib" />
+    <file src="build\native\LLE.Native.Cu118.props" target="build\native\LLE.Native.Cu118.props" />
+    <file src="build\native\LLE.Native.Cu118.targets" target="build\native\LLE.Native.Cu118.targets" />
+    <file src="licenses\CUDA-EULA.txt" target="licenses\CUDA-EULA.txt" />
+    <file src="licenses\cudnn-LICENSE.txt" target="licenses\cudnn-LICENSE.txt" />
+    <file src="licenses\onnxruntime-LICENSE.txt" target="licenses\onnxruntime-LICENSE.txt" />
+    <file src="licenses\onnxruntime-ThirdPartyNotices.txt" target="licenses\onnxruntime-ThirdPartyNotices.txt" />
+    <file src="licenses\opencv-LICENSE.txt" target="licenses\opencv-LICENSE.txt" />
+    <file src="icon.png" target="icon.png" />
+    <file src="readme.md" target="readme.md" />
+  </files>
+</package>

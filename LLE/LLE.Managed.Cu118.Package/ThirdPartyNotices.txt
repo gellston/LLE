@@ -1,0 +1,28 @@
+THIRD-PARTY NOTICES
+===================
+
+This package redistributes and/or links against third-party software components.
+The following notices apply to the third-party components included with this package.
+
+1) ONNX Runtime
+---------------
+Project: ONNX Runtime (Microsoft)
+License: MIT License
+Source: https://github.com/microsoft/onnxruntime
+Included binaries (example): onnxruntime*.dll (and related DLLs)
+License text: licenses/onnxruntime-LICENSE.txt
+Third-party notices: licenses/onnxruntime-ThirdPartyNotices.txt
+
+2) OpenCV
+---------
+Project: OpenCV
+License:
+  - Apache License 2.0 (OpenCV 4.5.0 and later)
+  - BSD 3-Clause License (OpenCV 4.4.0 and earlier)
+Source: https://github.com/opencv/opencv  (and/or your binary distribution source)
+Included binaries (example): opencv*.dll
+License text: licenses/opencv-LICENSE.txt
+
+Notes:
+- If the OpenCV binaries distributed with this package contain additional third-party components,
+  their corresponding license texts/notices are included under the 'licenses/' directory.

@@ -51,6 +51,10 @@ namespace LLEAPI {
 				double get();
 				void set(double value);
 			}
+
+			property System::IntPtr Handle {
+				System::IntPtr get();
+			}
 #pragma endregion
 
 #pragma region Public Functions
@@ -58,6 +62,12 @@ namespace LLEAPI {
 
 			void Reset();
 #pragma endregion
+
+#pragma region Static Functions
+			MemoryPool^ Create();
+			MemoryPool^ Create(array<std::size_t>^ bins, std::size_t unitSize, double minRequestedToBinRatio);
+#pragma endregion
+
 
 
 
