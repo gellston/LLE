@@ -15,8 +15,8 @@
   <br/>
 
   <!-- Managed (Cuda118) -->
-  <a href="https://www.nuget.org/packages/LLE.Managed.Cuda118">
-    <img src="https://img.shields.io/nuget/v/LLE.Managed.Cuda118.svg?style=for-the-badge&logo=nuget&label=NuGet%20Managed%20Cuda118" />
+  <a href="https://www.nuget.org/packages/LLE.Managed.Cu118">
+    <img src="https://img.shields.io/nuget/v/LLE.Managed.Cu118.svg?style=for-the-badge&logo=nuget&label=NuGet%20Managed%20Cuda118" />
   </a>
   <img src="https://img.shields.io/badge/CUDA-11.8-76B900?style=for-the-badge&logo=nvidia" />
 
