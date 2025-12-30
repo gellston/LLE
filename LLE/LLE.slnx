@@ -10,6 +10,11 @@
     </Project>
     <Project Path="LLE.Native.Cu118/LLE.Native.Cu118.vcxproj" Id="f629d307-3210-46e4-a83b-9af89117d9b1" />
   </Folder>
+  <Folder Name="/App/">
+    <Project Path="LLEViewer/LLEViewer.csproj" Id="4221c6df-9532-4ff8-8d26-0af319c7f47e">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+  </Folder>
   <Folder Name="/Console/">
     <Project Path="ManagedTest/ManagedTest.csproj" Id="ca17ed35-c354-4cb4-81f2-f94848f070f7">
       <Platform Solution="*|x64" Project="x64" />

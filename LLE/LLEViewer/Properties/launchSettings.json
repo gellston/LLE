@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "LLEViewer": {
+      "commandName": "Project",
+      "nativeDebugging": true
+    }
+  }
+}
