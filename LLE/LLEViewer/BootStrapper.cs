@@ -1,4 +1,5 @@
 ﻿using ConvMVVM2.Core.MVVM;
+using LLEViewer.Services;
 using LLEViewer.ViewModels;
 using LLEViewer.Views;
 using LLEViewer.Windows;
@@ -48,6 +49,11 @@ namespace LLEViewer
             serviceCollection.AddSingleton<CameraViewModel>();
             serviceCollection.AddSingleton<ImageViewModel>();
             serviceCollection.AddSingleton<VideoViewModel>();
+
+
+
+            //Service
+            serviceCollection.AddSingleton<ILLEService, LLEService>();
         }
 
         protected override void ViewModelMapping(IViewModelMapper viewModelMapper)

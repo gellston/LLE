@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LLEViewer.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800"
+             d:DesignHeight="1024" d:DesignWidth="1280"
              xmlns:convMVVM2="https://github.com/gellston/ConvMVVM2"
              convMVVM2:ViewModelLocator.AutoWireViewModel="True"
              convMVVM2:ViewModelLocator.UseNamePatternMapper="True"
@@ -15,6 +15,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/Style.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+            <convMVVM2:InverseBoolConverter x:Key="InverseBoolConverter"></convMVVM2:InverseBoolConverter>
         </ResourceDictionary>
     </UserControl.Resources>
     
@@ -25,40 +26,79 @@
                 Background="#262626"
                 Padding="{StaticResource Space.S}"
                 Margin="9,9,9,0">
-            <Menu Background="Transparent">
-                <MenuItem ToolTipService.BetweenShowDelay="0"
-                          ToolTipService.InitialShowDelay="0"
-                          ToolTip="Home"
-                          Command="{Binding HomeViewCommand}">
-                    <MenuItem.Header>
-                        <Image Source="/Images/home.png"></Image>
-                    </MenuItem.Header>
-                </MenuItem>
-                <MenuItem ToolTipService.BetweenShowDelay="0"
-                          ToolTipService.InitialShowDelay="0"
-                          ToolTip="Image"
-                          Command="{Binding ImageViewCommand}">
-                    <MenuItem.Header>
-                        <Image Source="/Images/image.png"></Image>
-                    </MenuItem.Header>
-                </MenuItem>
-                <MenuItem ToolTipService.BetweenShowDelay="0"
-                          ToolTipService.InitialShowDelay="0"
-                          ToolTip="Video"
-                          Command="{Binding VideoViewCommand}">
-                    <MenuItem.Header>
-                        <Image Source="/Images/video.png"></Image>
-                    </MenuItem.Header>
-                </MenuItem>
-                <MenuItem ToolTipService.BetweenShowDelay="0"
-                          ToolTipService.InitialShowDelay="0"
-                          ToolTip="Camera"
-                          Command="{Binding CameraViewCommand}">
-                    <MenuItem.Header>
-                        <Image Source="/Images/camera.png"></Image>
-                    </MenuItem.Header>
-                </MenuItem>
-            </Menu>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+                    <ColumnDefinition Width="80"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Menu Background="Transparent">
+                    <MenuItem ToolTipService.BetweenShowDelay="0"
+                              ToolTipService.InitialShowDelay="0"
+                              ToolTip="Home"
+                              Command="{Binding HomeViewCommand}">
+                        <MenuItem.Header>
+                            <Image Source="/Images/home.png"></Image>
+                        </MenuItem.Header>
+                    </MenuItem>
+                    <MenuItem ToolTipService.BetweenShowDelay="0"
+                              ToolTipService.InitialShowDelay="0"
+                              ToolTip="Image"
+                              Command="{Binding ImageViewCommand}">
+                        <MenuItem.Header>
+                            <Image Source="/Images/image.png"></Image>
+                        </MenuItem.Header>
+                    </MenuItem>
+                    <MenuItem ToolTipService.BetweenShowDelay="0"
+                              ToolTipService.InitialShowDelay="0"
+                              ToolTip="Video"
+                              Command="{Binding VideoViewCommand}">
+                        <MenuItem.Header>
+                            <Image Source="/Images/video.png"></Image>
+                        </MenuItem.Header>
+                    </MenuItem>
+                    <MenuItem ToolTipService.BetweenShowDelay="0"
+                              ToolTipService.InitialShowDelay="0"
+                              ToolTip="Camera"
+                              Command="{Binding CameraViewCommand}">
+                        <MenuItem.Header>
+                            <Image Source="/Images/camera.png"></Image>
+                        </MenuItem.Header>
+                    </MenuItem>
+                </Menu>
+
+                <ComboBox Grid.Column="1"
+                          ItemsSource="{Binding DeviceCollection}"
+                          SelectedIndex="0"
+                          SelectedValue="{Binding SelectedDevice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                </ComboBox>
+
+                <Button Grid.Column="2"
+                        Width="70"
+                        Height="35"
+                        Margin="5"
+                        ToolTipService.BetweenShowDelay="0"
+                        ToolTipService.InitialShowDelay="0"
+                        ToolTip="On"
+                        Command="{Binding SetupCommand}"
+                        IsEnabled="{Binding Converter={StaticResource InverseBoolConverter}, Path=IsInitialized}">
+                    <Image Source="/Images/on.png"></Image>
+                </Button>
+                <Button Grid.Column="3"
+                        Width="70"
+                        Height="35"
+                        Margin="5"
+                        ToolTipService.BetweenShowDelay="0"
+                        ToolTipService.InitialShowDelay="0"
+                        ToolTip="Off"
+                        Command="{Binding ShutdownCommand}"
+                        IsEnabled="{Binding Path=IsInitialized}">
+                    <Image Source="/Images/off.png"></Image>
+                </Button>
+            </Grid>
+            
         </Border>
 
 

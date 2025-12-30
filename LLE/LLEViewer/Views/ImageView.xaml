@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LLEViewer.Views"
+             xmlns:models="clr-namespace:LLEViewer.Models"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              xmlns:convMVVM2="https://github.com/gellston/ConvMVVM2"
@@ -12,20 +13,74 @@
              convMVVM2:ViewModelLocator.UseViewModelMapper="False">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="250"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
         <Border CornerRadius="9"
-                Background="#282828"
+                Background="#1f1f1f"
                 Grid.Column="0"
                 Padding="3"
                 Margin="3">
 
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="45"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                   
+                </Grid.RowDefinitions>
+
+                <Border Background="#383838"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Padding="5"
+                        Margin="5"
+                        CornerRadius="5">
+                    <TextBlock Text="Original Image"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"></TextBlock>
+                </Border>
+
+                <Border Background="#383838"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Padding="5"
+                        Margin="5"
+                        CornerRadius="5">
+                    <TextBlock Text="Enhanced Image"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"></TextBlock>
+                </Border>
+
+                <Border Background="#383838"
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Padding="5"
+                        Margin="5"
+                        CornerRadius="5">
+                    <Image Source="{Binding OriginalImage}"></Image>
+                </Border>
+
+                <Border Background="#383838"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Padding="5"
+                        Margin="5"
+                        CornerRadius="5">
+                    <Image Source="{Binding EnhancedImage}"></Image>
+                </Border>
+
+            </Grid>
+
         </Border>
 
         <Border CornerRadius="9"
-                Background="#282828"
+                Background="#1f1f1f"
                 Grid.Column="1"
                 Padding="6"
                 Margin="3">
@@ -49,9 +104,25 @@
                     </Button>
                 </DockPanel>
                 <ListBox ItemsSource="{Binding ImageFileCollection}"
-                         SelectedItem="{Binding SelectedMediaFile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                         SelectedItem="{Binding SelectedMediaFile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         SelectionMode="Single"
+                         HorizontalContentAlignment="Stretch"
+                         VerticalContentAlignment="Stretch">
                     <ListBox.Resources>
-                        <DataTemplate></DataTemplate>
+                        <DataTemplate DataType="{x:Type models:MediaFile}">
+                            <Grid Height="35">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="45"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="/Images/image_file.png"
+                                       Grid.Column="0"></Image>
+                                <TextBlock Grid.Column="1"
+                                           Text="{Binding FileName}"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Left"></TextBlock>
+                            </Grid>
+                        </DataTemplate>
                     </ListBox.Resources>
                 </ListBox>
             </DockPanel>

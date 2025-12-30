@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="LLE.Managed.Cu118" Version="1.0.5" />
+    <PackageReference Include="LLE.Managed.Cu118" Version="1.0.5.2" />
   </ItemGroup>
 
 </Project>

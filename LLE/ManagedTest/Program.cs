@@ -10,7 +10,7 @@
                 var lle = LLEAPI.V1.LLE.Create();
                 //// load zerodce model and load on cpu
                 //// its also support onnx model load from path
-                lle.Setup(LLEAPI.V1.DlType.ZeroDCE, LLEAPI.V1.Device.Cpu);
+                lle.Setup(LLEAPI.V1.DlType.ZeroDCE, LLEAPI.V1.Device.Cuda);
                 //// load color image
                 var input = LLEAPI.V1.Image.Imread("C://github//dataset//lol_dataset//our485//low//low_15.png", LLEAPI.V1.ColorType.Color);
                 //// predict 

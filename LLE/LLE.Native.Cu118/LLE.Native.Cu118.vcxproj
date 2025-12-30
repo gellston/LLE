@@ -156,7 +156,10 @@ xcopy /Y /E /I "$(OutDir)*.dll" "$(SolutionDir)LLE.Native.Cu118.Package\build\na
 
 
 
-xcopy /Y /E /I "$(OutDir)*.dll" "$(SolutionDir)LLE.Managed.Cu118.Package\runtimes\win-x64\native\"</Command>
+xcopy /Y /E /I "$(OutDir)*.dll" "$(SolutionDir)LLE.Managed.Cu118.Package\runtimes\win-x64\native\"
+
+copy /Y "$(OutDir)zlib1.dll" "$(SolutionDir)LLE.Managed.Cu118.Package\lib\$(TargetFramework)zlibwapi.dll"
+copy /Y "$(OutDir)zlib1.dll" "$(SolutionDir)LLE.Managed.Cu118.Package\runtimes\win-x64\native\zlibwapi.dll"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

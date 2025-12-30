@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace LLEViewer.Services
 {
-    public class LLEService
+    public class LLEService : ILLEService
     {
         #region Private Property
-        private readonly LLEAPI.V1.MemoryPool pool = null;
-        private readonly LLEAPI.V1.LLE lle = LLEAPI.V1.LLE.Create();
+        private readonly LLEAPI.V1.MemoryPool pool = LLEAPI.V1.MemoryPool.Create();
+        private readonly LLEAPI.V1.LLE lle = null;
         #endregion
 
         #region Constructor
@@ -19,8 +19,14 @@ namespace LLEViewer.Services
         {
 
 
+            this.lle = LLEAPI.V1.LLE.Create(this.pool);
            
         }
+        #endregion
+
+        #region Event 
+        public event Action OnSetup;
+        public event Action OnShutdown;
         #endregion
 
         #region Public Functions
@@ -28,7 +34,13 @@ namespace LLEViewer.Services
         {
             try
             {
-                return lle.Predict(path);
+
+                lock (this.lle)
+                {
+                    return lle.Predict(path);
+                }
+
+   
             }
             catch
             {
@@ -39,7 +51,12 @@ namespace LLEViewer.Services
         {
             try
             {
-                return lle.Predict(input);
+                lock (this.lle)
+                {
+                    return lle.Predict(input);
+                }
+
+
             }
             catch
             {
@@ -50,16 +67,22 @@ namespace LLEViewer.Services
         {
             try
             {
-                switch (device)
+                lock (this.lle)
                 {
-                    case "CPU":
-                        lle.Setup(DlType.ZeroDCE, Device.Cpu);
-                        break;
+                    switch (device)
+                    {
+                        case "CPU":
+                            lle.Setup(DlType.ZeroDCE, Device.Cpu);
+                            this.OnSetup();
+                            break;
 
-                    case "CUDA":
-                        lle.Setup(DlType.ZeroDCE, Device.Cuda);
-                        break;
+                        case "CUDA":
+                            lle.Setup(DlType.ZeroDCE, Device.Cuda);
+                            this.OnSetup();
+                            break;
+                    }
                 }
+
             }
             catch
             {
@@ -70,7 +93,11 @@ namespace LLEViewer.Services
         {
             try
             {
-                lle.Shutdown();
+                lock (this.lle)
+                {
+                    lle.Shutdown();
+                    this.OnShutdown();
+                }
             }
             catch
             {
@@ -78,5 +105,7 @@ namespace LLEViewer.Services
             }
         }
         #endregion
+
+
     }
 }

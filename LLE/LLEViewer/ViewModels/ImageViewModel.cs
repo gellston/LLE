@@ -2,12 +2,15 @@
 using ConvMVVM2.Core.Attributes;
 using ConvMVVM2.Core.MVVM;
 using LLEViewer.Models;
+using LLEViewer.Services;
+using LLEViewer.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace LLEViewer.ViewModels
 {
@@ -16,12 +19,15 @@ namespace LLEViewer.ViewModels
 
         #region Private Property
         private readonly IDialogService dialogService;
+        private readonly ILLEService lleService;
         #endregion
 
         #region Constructor
-        public ImageViewModel(IDialogService dialogService)
+        public ImageViewModel(IDialogService dialogService,
+                              ILLEService lleService)
         {
             this.dialogService = dialogService;
+            this.lleService = lleService;
         }
         #endregion
 
@@ -35,6 +41,13 @@ namespace LLEViewer.ViewModels
         #region Public Property
         [Property]
         private MediaFile _SelectedMediaFile = null;
+
+
+        [Property]
+        private WriteableBitmap _OriginalImage = null;
+
+        [Property]
+        private WriteableBitmap _EnhancedImage = null;
         #endregion
 
         #region Command
@@ -79,11 +92,57 @@ namespace LLEViewer.ViewModels
 
         partial void OnSelectedMediaFileChanged(MediaFile value)
         {
+            if (value == null) return;
+
             try
             {
-       
 
-            }catch(Exception ex)
+
+                using var inputImage = LLEAPI.V1.Image.Imread(value.FilePath, LLEAPI.V1.ColorType.Color);
+
+                if(this.OriginalImage == null ||
+                   this.OriginalImage.Width != inputImage.Width ||
+                   this.OriginalImage.Height != inputImage.Height)
+                {
+                    this.OriginalImage = ImageHelper.CreateFromRawPointer(inputImage.Data,
+                                                                          (int)inputImage.Width,
+                                                                          (int)inputImage.Height,
+                                                                          (int)inputImage.Stride);
+                }
+                else
+                {
+                    ImageHelper.UpdatePixelsSameSize(this.OriginalImage,
+                                                     inputImage.Data,
+                                                     (int)inputImage.Width,
+                                                     (int)inputImage.Height,
+                                                     (int)inputImage.Stride);
+                }
+
+
+
+                using var enhancedImage = this.lleService.Predict(inputImage);
+
+                if (this.EnhancedImage == null ||
+                    this.EnhancedImage.Width != enhancedImage.Width ||
+                    this.EnhancedImage.Height != enhancedImage.Height)
+                {
+                    this.EnhancedImage = ImageHelper.CreateFromRawPointer(enhancedImage.Data,
+                                                                          (int)enhancedImage.Width,
+                                                                          (int)enhancedImage.Height,
+                                                                          (int)enhancedImage.Stride);
+                }
+                else
+                {
+                    ImageHelper.UpdatePixelsSameSize(this.EnhancedImage,
+                                                     enhancedImage.Data,
+                                                     (int)enhancedImage.Width,
+                                                     (int)enhancedImage.Height,
+                                                     (int)enhancedImage.Stride);
+                }
+
+
+            }
+            catch(Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine(ex.ToString());
             }
