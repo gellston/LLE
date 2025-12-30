@@ -11,11 +11,13 @@ namespace LLEViewer.Services
     {
         #region Private Property
         private readonly LLEAPI.V1.MemoryPool pool = null;
+        private readonly LLEAPI.V1.LLE lle = LLEAPI.V1.LLE.Create();
         #endregion
 
         #region Constructor
         public LLEService()
         {
+
 
            
         }
@@ -26,7 +28,7 @@ namespace LLEViewer.Services
         {
             try
             {
-
+                return lle.Predict(path);
             }
             catch
             {
@@ -37,18 +39,27 @@ namespace LLEViewer.Services
         {
             try
             {
-
+                return lle.Predict(input);
             }
             catch
             {
                 throw;
             }
         }
-        public void Setup()
+        public void Setup(string device)
         {
             try
             {
+                switch (device)
+                {
+                    case "CPU":
+                        lle.Setup(DlType.ZeroDCE, Device.Cpu);
+                        break;
 
+                    case "CUDA":
+                        lle.Setup(DlType.ZeroDCE, Device.Cuda);
+                        break;
+                }
             }
             catch
             {
@@ -59,7 +70,7 @@ namespace LLEViewer.Services
         {
             try
             {
-
+                lle.Shutdown();
             }
             catch
             {
