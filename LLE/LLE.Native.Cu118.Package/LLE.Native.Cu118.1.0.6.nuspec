@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
   <metadata>
     <id>LLE.Native.Cu118</id>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
     <title></title>
     <authors>gellston</authors>
     <owners></owners>
@@ -34,6 +34,7 @@
     <file src="build\native\bin\x64\opencv_videoio4.dll" target="build\native\bin\x64\opencv_videoio4.dll" />
     <file src="build\native\bin\x64\tiff.dll" target="build\native\bin\x64\tiff.dll" />
     <file src="build\native\bin\x64\zlib1.dll" target="build\native\bin\x64\zlib1.dll" />
+    <file src="build\native\bin\x64\zlibwapi.dll" target="build\native\bin\x64\zlibwapi.dll" />
     <file src="build\native\include\lle\image.h" target="build\native\include\lle\image.h" />
     <file src="build\native\include\lle\lle.h" target="build\native\include\lle\lle.h" />
     <file src="build\native\include\lle\lle_api.h" target="build\native\include\lle\lle_api.h" />
