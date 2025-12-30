@@ -5,11 +5,56 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:LLEViewer.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             xmlns:convMVVM2="https://github.com/gellston/ConvMVVM2"
+             convMVVM2:ViewModelLocator.AutoWireViewModel="True"
+             convMVVM2:ViewModelLocator.UseNamePatternMapper="True"
+             convMVVM2:ViewModelLocator.UseViewModelMapper="False">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
+
+        <Border CornerRadius="9"
+                Background="#282828"
+                Grid.Column="0"
+                Padding="3"
+                Margin="3">
+
+        </Border>
+
+        <Border CornerRadius="9"
+                Background="#282828"
+                Grid.Column="1"
+                Padding="6"
+                Margin="3">
+            <DockPanel>
+                <DockPanel DockPanel.Dock="Top"
+                           Margin="0,0,0,6"
+                           Height="40">
+                    <Button Margin="3"
+                            ToolTip="Open Images"
+                            ToolTipService.InitialShowDelay="0"
+                            ToolTipService.BetweenShowDelay="0"
+                            Command="{Binding OpenFolderCommand}">
+                        <Image Source="/Images/folder.png"></Image>
+                    </Button>
+                    <Button Margin="3"
+                            ToolTip="Clear Images"
+                            ToolTipService.InitialShowDelay="0"
+                            ToolTipService.BetweenShowDelay="0"
+                            Command="{Binding ClearImagesCommand}">
+                        <Image Source="/Images/garbage.png"></Image>
+                    </Button>
+                </DockPanel>
+                <ListBox ItemsSource="{Binding ImageFileCollection}"
+                         SelectedItem="{Binding SelectedMediaFile, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ListBox.Resources>
+                        <DataTemplate></DataTemplate>
+                    </ListBox.Resources>
+                </ListBox>
+            </DockPanel>
+        </Border>
     </Grid>
 </UserControl>

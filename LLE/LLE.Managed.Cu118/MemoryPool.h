@@ -64,8 +64,8 @@ namespace LLEAPI {
 #pragma endregion
 
 #pragma region Static Functions
-			MemoryPool^ Create();
-			MemoryPool^ Create(array<std::size_t>^ bins, std::size_t unitSize, double minRequestedToBinRatio);
+			static MemoryPool^ Create();
+			static MemoryPool^ Create(array<std::size_t>^ bins, std::size_t unitSize, double minRequestedToBinRatio);
 #pragma endregion
 
 
