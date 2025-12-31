@@ -28,5 +28,11 @@
     <Project Path="CSharpInference/CSharpInference.csproj" Id="b2394b97-240a-4a44-859a-abf18299c665">
       <Platform Solution="*|x64" Project="x64" />
     </Project>
+    <Project Path="FSharpInference/FSharpInference.fsproj" Id="be4efb91-ddae-407b-b509-30563e8069e2">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
+    <Project Path="VBInference/VBInference.vbproj" Id="4bd555ef-f166-4299-8847-0b52d12886d9">
+      <Platform Solution="*|x64" Project="x64" />
+    </Project>
   </Folder>
 </Solution>
