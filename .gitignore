@@ -35,3 +35,8 @@
 /LLE/.vs/ProjectEvaluation
 /LLE/LLEViewer/obj
 /LLE/ManagedTest/bin/x64/Release/net9.0-windows
+/LLE/FSharpInference/bin/x64
+/LLE/FSharpInference/obj
+/LLE/FSharpInference/FSharpInference.fsproj
+/LLE/VBInference/bin/x64/Debug
+/LLE/VBInference/obj
