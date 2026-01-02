@@ -39,7 +39,9 @@
 - Examples:
   * [`CppInference`](https://github.com/gellston/LLE/tree/main/LLE/CppInference)
   * [`CSharpInference`](https://github.com/gellston/LLE/tree/main/LLE/CSharpInference)
-
+  * [`FSharpInference`](https://github.com/gellston/LLE/tree/main/LLE/FSharpInference)
+  * [`VBInference`](https://github.com/gellston/LLE/tree/main/LLE/VBInference)
+  
 ### NuGet Packages (Native vs Managed)
 
 - **`LLE.Native.Cu118`** *(C++ / native)*  
