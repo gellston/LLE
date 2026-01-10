@@ -32,6 +32,10 @@ namespace LLEAPI {
 			lleapi::v1::lle_ptr* instance = nullptr;
 #pragma endregion
 
+#pragma region Private Functions
+			void Cleanup(bool disposing);
+#pragma endregion
+
 		internal:
 #pragma region Constructor
 			LLE(lleapi::v1::lle_ptr lle);
@@ -46,9 +50,7 @@ namespace LLEAPI {
 			!LLE();
 #pragma endregion
 
-#pragma region Private Functions
-			void Cleanup(bool disposing);
-#pragma endregion
+
 
 
 #pragma region Public Functions
