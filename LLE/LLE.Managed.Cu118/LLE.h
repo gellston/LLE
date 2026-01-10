@@ -65,10 +65,7 @@ namespace LLEAPI {
 			static LLE^ Create();
 			static LLE^ Create(MemoryPool^ pool);
 #pragma endregion
-
-
-
-
+			
 		};
 	}
 }
